@@ -1,0 +1,4 @@
+# The licence is the canonical CC BY-NC-ND 4.0 legalcode, byte-for-byte as fetched from
+# creativecommons.org. Pin its bytes, so a checkout with core.autocrlf=true never rewrites its line
+# endings and its sha256 still reproduces.
+LICENSE -text
