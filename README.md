@@ -34,8 +34,8 @@ accepted.
 
 © 2026 HetCreep. Released under
 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/); the full text is in
-[`LICENSE`](LICENSE). You may share it with credit; you may not use it commercially or adapt it
-without written permission from the owner.
+[`LICENSE`](LICENSE). You may share it with credit; you may not use it commercially or distribute an
+adapted version without written permission from the owner.
 
 > ⚠️ Not legal or financial advice. The rates, pity and prices of the games it cites are public facts
 > from the sources named in the document, and you can check them yourself.
