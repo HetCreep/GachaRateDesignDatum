@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-labelledby="g1-title g1-desc">
+  <title id="g1-title">Six-game exemplar comparison matrix</title>
+  <desc id="g1-desc">A table of six games (Genshin, Honkai Star Rail, Arknights, FGO, Fire Emblem Heroes, Blue Archive) against four measured properties: whether the band rate stays stable as the roster grows, whether pool membership moves instead of the rate, whether duplicate value is tiered by rarity, and whether the multi-pull discount factor d equals zero. A checkmark means the article states this fact for that game. A dash means the article does not state this fact for that game -- it is not rendered as a no, only as not stated. FGO and Fire Emblem Heroes carry a footnote on the multi-pull column: the ticket price itself shows no discount, but each runs a separate bonus mechanic the article explicitly calls a different matter from a price discount.</desc>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1a1a1a; }
+    .col-header { font-size: 14px; font-weight: 700; }
+    .row-label { font-size: 15px; font-weight: 700; }
+    .check { font-size: 20px; font-weight: 700; fill: #1a1a1a; }
+    .dash { font-size: 18px; fill: #767676; }
+    .caption { font-size: 13px; fill: #1a1a1a; }
+    .footnote { font-size: 12px; fill: #1a1a1a; }
+  </style>
+
+  <rect x="0" y="0" width="900" height="520" fill="#ffffff"/>
+
+  <!-- Table geometry: label column 0-190, then 4 columns of 170px each: 190-360, 360-530, 530-700, 700-870 -->
+  <!-- Header row: y 30-90 ; 6 data rows of 50px each: 90-140,140-190,190-240,240-290,290-340,340-390 -->
+
+  <!-- Column headers -->
+  <text x="275" y="50" class="col-header" text-anchor="middle">Band rate</text>
+  <text x="275" y="68" class="col-header" text-anchor="middle">stable as roster grows</text>
+
+  <text x="445" y="50" class="col-header" text-anchor="middle">Pool membership</text>
+  <text x="445" y="68" class="col-header" text-anchor="middle">moves instead</text>
+
+  <text x="615" y="50" class="col-header" text-anchor="middle">Duplicate value</text>
+  <text x="615" y="68" class="col-header" text-anchor="middle">tiered by rarity</text>
+
+  <text x="785" y="50" class="col-header" text-anchor="middle">Multi-pull</text>
+  <text x="785" y="68" class="col-header" text-anchor="middle">d = 0</text>
+
+  <line x1="10" y1="80" x2="870" y2="80" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- Row zebra striping -->
+  <rect x="10" y="90" width="860" height="50" fill="#f2f2f2"/>
+  <rect x="10" y="190" width="860" height="50" fill="#f2f2f2"/>
+  <rect x="10" y="290" width="860" height="50" fill="#f2f2f2"/>
+
+  <!-- Row labels -->
+  <text x="20" y="120" class="row-label">Genshin</text>
+  <text x="20" y="170" class="row-label">Honkai Star Rail</text>
+  <text x="20" y="220" class="row-label">Arknights</text>
+  <text x="20" y="270" class="row-label">FGO</text>
+  <text x="20" y="320" class="row-label">Fire Emblem Heroes</text>
+  <text x="20" y="370" class="row-label">Blue Archive</text>
+
+  <!-- Row separators -->
+  <line x1="10" y1="140" x2="870" y2="140" stroke="#d9d9d9" stroke-width="1"/>
+  <line x1="10" y1="190" x2="870" y2="190" stroke="#d9d9d9" stroke-width="1"/>
+  <line x1="10" y1="240" x2="870" y2="240" stroke="#d9d9d9" stroke-width="1"/>
+  <line x1="10" y1="290" x2="870" y2="290" stroke="#d9d9d9" stroke-width="1"/>
+  <line x1="10" y1="340" x2="870" y2="340" stroke="#d9d9d9" stroke-width="1"/>
+  <line x1="10" y1="390" x2="870" y2="390" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- Genshin row: band-rate YES, pool NOT STATED, tiered NOT STATED, multi YES -->
+  <text x="275" y="120" class="check" text-anchor="middle">&#10003;</text>
+  <text x="445" y="120" class="dash" text-anchor="middle">&#8212;</text>
+  <text x="615" y="120" class="dash" text-anchor="middle">&#8212;</text>
+  <text x="785" y="120" class="check" text-anchor="middle">&#10003;</text>
+
+  <!-- HSR row: band-rate YES, pool YES, tiered NOT STATED, multi YES -->
+  <text x="275" y="170" class="check" text-anchor="middle">&#10003;</text>
+  <text x="445" y="170" class="check" text-anchor="middle">&#10003;</text>
+  <text x="615" y="170" class="dash" text-anchor="middle">&#8212;</text>
+  <text x="785" y="170" class="check" text-anchor="middle">&#10003;</text>
+
+  <!-- Arknights row: band-rate YES, pool YES, tiered YES, multi YES -->
+  <text x="275" y="220" class="check" text-anchor="middle">&#10003;</text>
+  <text x="445" y="220" class="check" text-anchor="middle">&#10003;</text>
+  <text x="615" y="220" class="check" text-anchor="middle">&#10003;</text>
+  <text x="785" y="220" class="check" text-anchor="middle">&#10003;</text>
+
+  <!-- FGO row: band-rate YES, pool YES, tiered YES, multi YES* -->
+  <text x="275" y="270" class="check" text-anchor="middle">&#10003;</text>
+  <text x="445" y="270" class="check" text-anchor="middle">&#10003;</text>
+  <text x="615" y="270" class="check" text-anchor="middle">&#10003;</text>
+  <text x="785" y="270" class="check" text-anchor="middle">&#10003;<tspan font-size="12" dy="-8">*</tspan></text>
+
+  <!-- FEH row: band-rate YES, pool YES, tiered NOT STATED, multi YES* -->
+  <text x="275" y="320" class="check" text-anchor="middle">&#10003;</text>
+  <text x="445" y="320" class="check" text-anchor="middle">&#10003;</text>
+  <text x="615" y="320" class="dash" text-anchor="middle">&#8212;</text>
+  <text x="785" y="320" class="check" text-anchor="middle">&#10003;<tspan font-size="12" dy="-8">*</tspan></text>
+
+  <!-- Blue Archive row: band-rate NOT STATED, pool YES, tiered YES, multi YES -->
+  <text x="275" y="370" class="dash" text-anchor="middle">&#8212;</text>
+  <text x="445" y="370" class="check" text-anchor="middle">&#10003;</text>
+  <text x="615" y="370" class="check" text-anchor="middle">&#10003;</text>
+  <text x="785" y="370" class="check" text-anchor="middle">&#10003;</text>
+
+  <text x="450" y="415" class="footnote" text-anchor="middle" font-style="italic">
+    &#8212; means the article does not state this fact for that game, not that the answer is no.
+  </text>
+  <text x="450" y="433" class="footnote" text-anchor="middle" font-style="italic">
+    * FGO's 11th-card bonus and FEH's 5/4/4/4/3 ladder are named in the source as a separate matter from a price discount &#8212; the price itself is still d = 0.
+  </text>
+
+  <text x="450" y="470" class="caption" text-anchor="middle">
+    Source: GACHA-RATE-DESIGN-LOCK-PUBLIC.md &#167;4 (exemplar section) &#8212; six games, verbatim per-game facts.
+  </text>
+
+  <text x="450" y="490" class="caption" text-anchor="middle">
+    &#169; 2026 HetCreep &#8212; CC BY-NC-ND 4.0 (attribution, non-commercial, no derivatives)
+  </text>
+</svg>
