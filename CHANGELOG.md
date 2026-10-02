@@ -18,6 +18,13 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [Unreleased]
+
+### Fixed
+- Korea compliance row: nondisclosure or false probability information may lead to a ministerial
+  corrective order under Article 38(9); Article 45 penalties apply only to failure to comply with
+  that order. Added official statutory links in both the core document and `docs/explanation/exemplar.md`.
+
 ## [1.1.5] - 2026-10-01
 
 ### Changed
