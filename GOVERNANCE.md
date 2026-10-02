@@ -30,5 +30,5 @@ the owner's.
 ## Where to report
 
 Corrections, defects and questions go to the issue tracker linked above. A licence request
-(commercial use or adaptation) goes the same way or through **github.com/HetCreep**
+(commercial use, or distributing an adapted version) goes the same way or through **github.com/HetCreep**
 ([`CONTRIBUTING.md`](CONTRIBUTING.md)).

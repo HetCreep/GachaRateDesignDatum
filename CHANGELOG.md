@@ -28,7 +28,11 @@ which surface an entry applies to would state something false of the other surfa
   identically to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/explanation/exemplar.md`.
 - `README.md` licence summary: CC BY-NC-ND 4.0 forbids distributing an adapted version, not adapting
   the material privately; the line now says so.
-- Both reported by CodeRabbit's review of 2026-10-02.
+- The same licence reading in the other places that state it: `CONTRIBUTING.md`,
+  `GOVERNANCE.md`, `docs/license.md`, and the header and footer of
+  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md`. Adapting the material for your own use is allowed; sharing an
+  adapted version needs written permission.
+- The first two items were reported by CodeRabbit's review of 2026-10-02.
 
 ## [1.1.6] - 2026-10-03
 
