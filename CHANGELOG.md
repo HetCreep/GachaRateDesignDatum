@@ -18,6 +18,17 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [1.1.6] - 2026-10-03
+
+### Fixed
+- §5 price per pull: the median of the nine listed data points is 1.15% (the fifth of the nine in order),
+  not 1.11%; the mean, 1.72%, already matched the nine. The price per pull becomes 1.15% × ฿721.84 = ฿8.30
+  (was ฿8.01), so the worked example's `c` becomes ฿8.30 ÷ ฿0.5/gem = 16.60, rounded to the nearest whole
+  gem, 17 (was 16), and `cost_multi` becomes ceil(10 × 17 × (1 - 0)) = 170 gem = ฿85.00 (was 160 gem,
+  ฿80.00). The rounding of `c` to the nearest whole gem is now stated beside the line; it was left implicit
+  before. Applied identically to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and
+  `docs/guides/pricing-and-example.md`. Reported by CodeRabbit's review of 2026-10-02.
+
 ## [1.1.5] - 2026-10-01
 
 ### Changed
