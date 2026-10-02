@@ -118,7 +118,7 @@ revalidate ทุก 30 วัน หรือทันทีที่มี ame
 
 | กฎ/policy | มีผลตั้งแต่ | ข้อบังคับหลัก | invariant ที่ตอบโจทย์ |
 | --- | --- | --- | --- |
-| Korea Game Industry Promotion Act | 2024-03-22 | แสดง probability บนหน้าซื้อในเกมจริง ฝ่าฝืนปรับสูงสุด ₩20M/จำคุก 2 ปี | I5c, I8 |
+| Korea Game Industry Promotion Act | 2024-03-22 | แสดง probability บนหน้าซื้อในเกมจริง ถ้าไม่เปิดเผยหรือแสดง probability เท็จ รัฐมนตรีอาจออกคำสั่งแก้ไขตาม [Article 38(9)](https://www.law.go.kr/법령/게임산업진흥에관한법률/제38조) และเฉพาะผู้ไม่ปฏิบัติตามคำสั่งนั้นจึงมีโทษตาม [Article 45](https://www.law.go.kr/법령/게임산업진흥에관한법률/제45조) จำคุกไม่เกิน 2 ปี หรือปรับไม่เกิน ₩20M | I5c, I8 |
 | China Ministry of Culture Notice | 2017-05-01 | เผยแพร่ probability + เก็บ draw log ≥90 วัน | I5c, **I19** |
 | Apple App Store Guideline 3.1.1 | 2017-12 | disclose odds ก่อนผู้เล่นกดซื้อ ไม่ใช่แค่มีตารางอยู่ที่ไหนสักที่ | I8 |
 | Google Play Developer Policy (loot box) | 2019-05 | เงื่อนไขเดียวกับ Apple | I8 |

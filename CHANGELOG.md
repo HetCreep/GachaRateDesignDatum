@@ -18,6 +18,18 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [1.1.7] - 2026-10-03
+
+### Fixed
+- Korea compliance row: failing to disclose probabilities, or displaying false ones, can bring a
+  ministerial corrective order under Article 38(9) of the Game Industry Promotion Act; the penalty
+  (up to 2 years in prison or a fine of up to ₩20M) under Article 45 applies to failing to comply with
+  that order, not to the violation itself. The row now links both articles at law.go.kr. Applied
+  identically to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/explanation/exemplar.md`.
+- `README.md` licence summary: CC BY-NC-ND 4.0 forbids distributing an adapted version, not adapting
+  the material privately; the line now says so.
+- Both reported by CodeRabbit's review of 2026-10-02.
+
 ## [1.1.6] - 2026-10-03
 
 ### Fixed
