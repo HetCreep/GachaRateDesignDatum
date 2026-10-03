@@ -30,7 +30,7 @@ the owner's.
 ## The documentation site
 
 The documentation site is a reading copy, published from this repository by the platform's sync. **The
-site is not a write surface:** no change to this document is made through the site's editor. A commit
+site is not a write surface:** no change to the document or to any page of this repository is made through the site's editor. A commit
 on the default branch whose subject starts with `GITBOOK-` would mean that rule failed, and the
 `check` workflow fails the push that carries one.
 

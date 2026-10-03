@@ -27,12 +27,14 @@ which surface an entry applies to would state something false of the other surfa
   pool. The absorber's `D_char` now uses its own row's rate, `D[r] * rate(absorber) / B[r]`, and three
   bounds are written beside the formula: a member that is not the absorber is within
   `D[r] / B[r] * 0.5 * 10^-rho` a pull, the absorber within `Df[r] / B[r] * (N_r - 1) * 0.5 * 10^-rho`
-  (`Df[r]` is the part of `D[r]` dealt by forced draws, zero in a band no pity level fires, where the
-  absorber's figure is exact), and the printed figures of a band sum to `D[r]` within
+  (`Df[r]` is the part of `D[r]` dealt by forced draws; where it is zero, the absorber's figure is
+  exact), and the printed figures of a band sum to `D[r]` within
   `D[r] / B[r] * (N_r - 1) * 0.5 * 10^-rho`, while what the sampler deals sums to `D[r]` exactly.
-  Checked exactly on the locked example for every pool size from 1 to 300 a band. Applied identically
+  The bounds follow by algebra from the dealt-rate line, and were also checked exactly on the locked
+  example for every pool size from 1 to 300 a band. Applied identically
   to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/reference/rules-and-formula.md`. No base rate,
-  delivered band rate or published figure moves.
+  delivered band rate or figure printed in this document moves; an adopter's printed `D_char` for the
+  absorber moves to its own row's rate.
 
 ## [1.2.0] - 2026-10-03
 
