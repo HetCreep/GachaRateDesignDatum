@@ -27,6 +27,13 @@ environment under the owner's review; the `Co-Authored-By` trailer on a commit r
 wrote it. An assistant does not widen its own permissions or change a repository setting; those are
 the owner's.
 
+## The documentation site
+
+The documentation site is a reading copy, published from this repository by the platform's sync. **The
+site is not a write surface:** no change to this document is made through the site's editor. A commit
+on the default branch whose subject starts with `GITBOOK-` would mean that rule failed, and the
+`check` workflow fails the push that carries one.
+
 ## Where to report
 
 Corrections, defects and questions go to the issue tracker linked above. A licence request
