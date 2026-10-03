@@ -60,20 +60,35 @@ rate(absorber) = B[r] - SUM(rate(j) for j != absorber)
 cost(n) = c                        ถ้า n == 1
         = ceil(K * c * (1 - d))    ถ้า n == K
 
--- ============ PITY (derive) ============
-pity_rarity = r ที่ ord[r] สูงสุด ในบรรดา r ที่ B[r] > 0 และ N_r >= 1
-q           = B[pity_rarity]
-pity ยิงเมื่อ counter + 1 >= P          -- ต้องพลาดติดกัน P-1 ครั้ง
-forced draw = สุ่ม share(i) ภายในแบนด์นั้น    -- ไม่ใช่ order-by-id-limit-1
-counter reset = 0 เมื่อได้ rarity ที่ ord >= ord[pity_rarity], ไม่งั้น +1
+-- ============ PITY (derive) — มีได้หลายชั้น ============
+levels = { r : P[r] < infinity และ B[r] > 0 และ N_r >= 1 }    -- ชั้นของ pity เรียงตาม ord จากสูงไปต่ำ
+top    = ชั้นที่ ord สูงสุดใน levels                           -- เดิมชื่อ pity_rarity
+q      = B[top]
+c[r]   = counter ของชั้น r = จำนวน pull นับจาก drop ล่าสุดที่ ord >= ord[r]
 
-reach    = (1 - q)^(P - 1)              -- สัดส่วน cycle ที่ไปถึงเพดาน pity จริง
-E[cycle] = (1 - (1 - q)^P) / q          -- pull เฉลี่ยต่อการได้ 1 ครั้ง
+ชั้นที่ยิง r* = ชั้นที่ ord สูงสุด ในบรรดาชั้นที่ c[r] + 1 >= P[r]   -- ต้องพลาดติดกัน P[r]-1 ครั้ง
+                -- หลายชั้นถึงเพดานใน pull เดียวกัน ชั้นที่ ord สูงกว่าชนะ
+pull ปกติ (ไม่มีชั้นไหนยิง)  rarity r ออกด้วย B[r]
+pull ที่ชั้น r* ยิง           rarity ที่ ord > ord[r*] ยังออกด้วย B ของตัวเอง
+                            r* ได้ 1 - SUM(B[r'] ที่ ord[r'] > ord[r*])
+                            rarity ที่ ord < ord[r*] ได้ 0
+                            -- floor pity ไม่แย่งโอกาสของแบนด์ที่สูงกว่า และไม่เปลี่ยน q บน pull ไหนเลย
+forced draw = สุ่ม share(i) ภายในแบนด์ที่ออก    -- ไม่ใช่ order-by-id-limit-1
+หลัง drop ของ r'  c[r] = 0 ทุกชั้นที่ ord[r] <= ord[r'], ชั้นอื่น +1
+                  -- ได้ top แล้ว counter ทุกชั้นกลับเป็น 0
+
+reach[top] = (1 - q)^(P[top] - 1)          -- สัดส่วน cycle ของ top ที่ไปถึงเพดานจริง
+E[cycle]   = (1 - (1 - q)^P[top]) / q      -- pull เฉลี่ยต่อการได้ top 1 ครั้ง
+reach[r]   = สัดส่วนรอบของชั้น r ที่ไปถึง pull ที่ชั้น r ยิง      สำหรับชั้นรอง
+             -- รอบของชั้น r เริ่มใหม่ทุกครั้งที่ได้ drop ord >= ord[r] คำนวณจาก chain ข้างล่าง
 
 -- ============ DELIVERED RATE (สิ่งที่ผู้เล่นได้จริง ไม่ใช่ base) ============
-D[pity_rarity] = 1 / E[cycle]
-D[r]           = B[r] * (1 - D[pity_rarity]) / (1 - q)     สำหรับ r != pity_rarity
-D_char(i)      = D[rarity(i)] * share(i)
+-- ได้ top แล้ว counter ทุกชั้นกลับเป็น 0 กระบวนการจึงเริ่มใหม่ทุก cycle ของ top (renewal)
+D[top] = 1 / E[cycle]
+D[r]   = E[จำนวน drop ของ r ใน 1 cycle] / E[cycle]     สำหรับ r != top
+         -- E[...] คำนวณแบบ exact โดยไล่ chain ของสถานะ (c[top], c ของชั้นรอง) ภายใน 1 cycle
+         -- ถ้าไม่มีชั้นรอง สูตรนี้ลดรูปเป็น D[r] = B[r] * (1 - D[top]) / (1 - q)
+D_char(i) = D[rarity(i)] * share(i)
 => SUM(D[r]) = 1
 
 -- ============ SHARD / LADDER (derive) ============
@@ -98,7 +113,7 @@ pulls_to_terminal(i) = SUM(L[rarity(i)][k]) / (S[rarity(i)] * D_char(i))
 | **I2** | `SUM(rate(i)) == 1` **พอดี** ด้วย residual absorption ไม่ใช่ tolerance | tolerance ไม่ scale ตาม N — pool 20 ตัวพัง 74.3% ของเคส, pool 50 ตัวพัง 89.4% |
 | **I3** | `B[r] > 0 => N_r >= 1` | pity ถูกบังคับให้เลือกจากแบนด์ที่ไม่มีสมาชิก แล้ว hard-error ถาวร |
 | **I3b** | `B[r] = 0 => N_r = 0` | ตัวละครที่เรต 0% โผล่ใน list แต่สุ่มไม่ได้ |
-| **I4** | `0 < B[pity_rarity] < 1` | pool ที่ทุกตัวเป็น pity rarity → counter ค้างที่ 0 ตลอดกาล |
+| **I4** | `0 < B[top] < 1` | pool ที่ทุกตัวเป็น pity rarity → counter ค้างที่ 0 ตลอดกาล |
 | **I5b** | `SUM(D[r]) == 1` และหน้าจอต้องแสดง delivered ไม่ใช่แค่ base | `P=1` ส่งแบนด์บน 100% ขณะประกาศ 5% |
 | **I5c** | % ต่อตัวที่แสดง == `round(100*rate(i), rho)` ทุกตัว | เรต featured ไม่มี assertion → pool โต 20 เท่าโดยเงียบสนิท |
 | **I6** | `publishable(banner) <=> invariant ทุกข้อผ่าน AND ทุกตัวผ่าน asset gate` | banner ที่ disclosure ผิดยัง publish ได้ |
@@ -110,7 +125,7 @@ pulls_to_terminal(i) = SUM(L[rarity(i)][k]) / (S[rarity(i)] * D_char(i))
 | **I12** | monotone rarity: เรตสูงสุดในแบนด์ที่หายากกว่า < เรตต่ำสุดในแบนด์ที่พบง่ายกว่า | legendary กลายเป็นตัวที่พบบ่อยที่สุดใน pool |
 | **I13** | monotone grind: `pulls_to_terminal(หายากกว่า) >= pulls_to_terminal(พบง่ายกว่า)` | `S` แยกตาม rarity แต่ `L` ไม่แยก → ตัวหายากที่สุดจบก่อน เกมสั้นลง 5.4 เท่า |
 | **I14** | ค่าคงที่ที่กระจายอยู่หลายที่ (`K`, `L`, `ord`, `rho`) ต้องตรงกับ base | Postgres CHECK ใช้ subquery ไม่ได้ → literal ของ `K` 3 ชุดและ `L` 2 ชุดรอดกฎ |
-| **I15** | ไม่มีแถว pity ของ (banner, rarity) ที่ไม่ใช่ pity_rarity ปัจจุบัน | เปลี่ยน `B` แล้ว counter เก่าถูกตีความใหม่เงียบ ๆ |
+| **I15** | ไม่มีแถว pity ของ (banner, rarity) ที่ไม่ใช่ชั้นใน levels ปัจจุบัน | เปลี่ยน `B` แล้ว counter เก่าถูกตีความใหม่เงียบ ๆ |
 | **I17** | `cost_multi = ceil(K * c * (1 - d))` เสมอ พิมพ์แยกไม่ได้ | ราคา multi เข้ารหัสส่วนลดที่ไม่ได้ประกาศ |
 | **I18** | `0.30 <= reach ของ floor pity <= 0.60` | floor pity ที่ไม่มีใครไปถึง หรือยิงทุกครั้งจนไร้ความหมาย |
 | **I19** | เก็บ draw record ต่อผู้เล่นไม่ต่ำกว่า 90 วัน อ่านย้อนได้ต่อ pull | ตลาดที่บังคับเก็บ log (เช่นจีน) ตรวจสอบข้อพิพาทเรื่อง odds ย้อนหลังไม่ได้ |

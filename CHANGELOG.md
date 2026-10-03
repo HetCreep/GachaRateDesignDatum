@@ -18,6 +18,24 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [1.2.0] - 2026-10-03
+
+### Changed
+- Pity is written for more than one level. Each level has its own counter (pulls since the last drop
+  at or above that level's rarity). When several levels reach their threshold on the same pull, the
+  highest one fires. A pull forced at a level keeps every higher rarity at its base rate and gives
+  that level the rest. A drop resets the counters of every level at or below its rarity. The
+  delivered rate is computed over one cycle of the top level (every counter restarts there), and
+  reduces to the old single-level formula when there is no floor pity. Applied identically to
+  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/reference/rules-and-formula.md`, where I4 now names
+  `B[top]` and I15 names the current set of levels instead of the single `pity_rarity`.
+- The locked example is recomputed with both levels (`P[legendary] = 100`, `P[epic] = 10`): the epic
+  floor's reach is 30.72% (printed as 43.36% before, a figure that let only an epic reset the epic
+  counter), and the delivered rates are legendary 3.4193%, epic 13.3910%, rare 22.5638% and common
+  60.6258%. Legendary's reach (3.61%) and cycle (29.25 pulls) do not move. Applied identically to
+  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/guides/pricing-and-example.md`.
+- Reported by CodeRabbit's review of 2026-10-02.
+
 ## [1.1.7] - 2026-10-03
 
 ### Fixed

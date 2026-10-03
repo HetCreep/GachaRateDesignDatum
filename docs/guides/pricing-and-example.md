@@ -98,8 +98,22 @@ common      0.6401000   64.0100 %   <- absorber ดูดเศษปัดใ�
 
 ```
 P[legendary] = 100      reach = 3.61%    E[cycle] = 29.25 pull
-P[epic]      = 10       reach = 43.36%   (floor pity, ตาม I18: 0.30 <= reach <= 0.60)
+P[epic]      = 10       reach = 30.72%   (floor pity, ตาม I18: 0.30 <= reach <= 0.60)
 ```
+
+delivered rate เมื่อมี pity ทั้งสองชั้น (คำนวณแบบ exact จาก chain ของสถานะ ตรวจซ้ำด้วยการจำลอง)
+
+```
+              base B      delivered D
+legendary     3.3000 %     3.4193 %
+epic          8.8666 %    13.3910 %
+rare         23.8234 %    22.5638 %
+common       64.0100 %    60.6258 %
+```
+
+floor pity ของ epic ยก epic จาก 8.8666% เป็น 13.3910% โดยไม่เปลี่ยนเรต legendary เลย และ reach ของ
+epic 30.72% อยู่ในกรอบ I18 ฉบับก่อน v1.2.0 พิมพ์ reach นี้เป็น 43.36% ซึ่งคิดราวกับว่ามีแต่ epic ที่ reset
+counter ของ epic แต่ legendary ก็ reset ด้วย
 
 `P = 100` ถูกเลือกเหนือค่าที่ derive ได้ (`P = 80`) เพราะ reach ที่ 100 ต่ำกว่าที่ทุก exemplar
 พึ่ง pity อยู่ — คือ **ผู้เล่นส่วนใหญ่ได้ของก่อนถึงเพดาน** ซึ่งเป็นเจตนาของ flat rate
