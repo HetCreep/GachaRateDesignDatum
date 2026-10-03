@@ -27,8 +27,9 @@ which surface an entry applies to would state something false of the other surfa
   that level the rest. A drop resets the counters of every level at or below its rarity. The
   delivered rate is computed over one cycle of the top level (every counter restarts there), and
   reduces to the old single-level formula when there is no floor pity. Applied identically to
-  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/reference/rules-and-formula.md`, where I4 now names
-  `B[top]` and I15 names the current set of levels instead of the single `pity_rarity`.
+  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/reference/rules-and-formula.md`, where I4 now says top
+  must be the highest rarity with a non-zero rate, I9 reads `P[top]`, and I15 names the current set
+  of levels instead of the single `pity_rarity`.
 - The locked example is recomputed with both levels (`P[legendary] = 100`, `P[epic] = 10`): the epic
   floor's reach is 30.72% (printed as 43.36% before, a figure that let only an epic reset the epic
   counter), and the delivered rates are legendary 3.4193%, epic 13.3910%, rare 22.5638% and common

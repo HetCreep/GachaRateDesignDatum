@@ -113,13 +113,13 @@ pulls_to_terminal(i) = SUM(L[rarity(i)][k]) / (S[rarity(i)] * D_char(i))
 | **I2** | `SUM(rate(i)) == 1` **พอดี** ด้วย residual absorption ไม่ใช่ tolerance | tolerance ไม่ scale ตาม N — pool 20 ตัวพัง 74.3% ของเคส, pool 50 ตัวพัง 89.4% |
 | **I3** | `B[r] > 0 => N_r >= 1` | pity ถูกบังคับให้เลือกจากแบนด์ที่ไม่มีสมาชิก แล้ว hard-error ถาวร |
 | **I3b** | `B[r] = 0 => N_r = 0` | ตัวละครที่เรต 0% โผล่ใน list แต่สุ่มไม่ได้ |
-| **I4** | `0 < B[top] < 1` | pool ที่ทุกตัวเป็น pity rarity → counter ค้างที่ 0 ตลอดกาล |
+| **I4** | `0 < B[top] < 1` และ top คือ rarity ที่ ord สูงสุดที่ B > 0 | pool ที่ทุกตัวอยู่ในแบนด์ top → counter ค้างที่ 0 ตลอดกาล และถ้า rarity ที่สูงกว่า top ไม่มี pity → E[cycle] กับ D[top] นับ drop ของ rarity นั้นเป็นของ top |
 | **I5b** | `SUM(D[r]) == 1` และหน้าจอต้องแสดง delivered ไม่ใช่แค่ base | `P=1` ส่งแบนด์บน 100% ขณะประกาศ 5% |
 | **I5c** | % ต่อตัวที่แสดง == `round(100*rate(i), rho)` ทุกตัว | เรต featured ไม่มี assertion → pool โต 20 เท่าโดยเงียบสนิท |
 | **I6** | `publishable(banner) <=> invariant ทุกข้อผ่าน AND ทุกตัวผ่าน asset gate` | banner ที่ disclosure ผิดยัง publish ได้ |
 | **I7** | `w[i] >= 1` (integer) | `w = 0` → division by zero ทุก pull ทุกผู้เล่น; `w < 0` → เรตติดลบ |
 | **I8** | แถวที่ผู้เล่น (role `anon`) เห็น == แถวที่ sampler อ่าน | test รันเป็น superuser → พิสูจน์ odds ของ row set ที่ผู้เล่นอ่านไม่ได้ |
-| **I9** | `tau_min <= (1-q)^(P-1) <= tau_max` | `B[top]=0.30` → pity ยิงทุก 103,520 pull โดย invariant อื่นเขียวหมด |
+| **I9** | `tau_min <= (1-q)^(P[top]-1) <= tau_max` | `B[top]=0.30` → pity ยิงทุก 103,520 pull โดย invariant อื่นเขียวหมด |
 | **I10** | `u > 0 => F_r >= 1` (ไม่มี fallback `u = 0`) | ถอด featured ออกเพราะ asset ไม่พร้อม → เรตตัวที่เหลือกระโดด 8 เท่า และยัง publish |
 | **I11** | `rate(i) >= 10^-rho` ทุกตัว | แถวเรต 0 ผูก cumulative กับตัวก่อนหน้า → เกิด tie ใน `limit 1` |
 | **I12** | monotone rarity: เรตสูงสุดในแบนด์ที่หายากกว่า < เรตต่ำสุดในแบนด์ที่พบง่ายกว่า | legendary กลายเป็นตัวที่พบบ่อยที่สุดใน pool |
