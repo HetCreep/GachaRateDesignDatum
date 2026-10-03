@@ -88,7 +88,14 @@ D[top] = 1 / E[cycle]
 D[r]   = E[จำนวน drop ของ r ใน 1 cycle] / E[cycle]     สำหรับ r != top
          -- E[...] คำนวณแบบ exact โดยไล่ chain ของสถานะ (c[top], c ของชั้นรอง) ภายใน 1 cycle
          -- ถ้าไม่มีชั้นรอง สูตรนี้ลดรูปเป็น D[r] = B[r] * (1 - D[top]) / (1 - q)
-D_char(i) = D[rarity(i)] * share(i)
+D_char(i)        = D[r] * share(i)                ถ้า i ไม่ใช่ absorber   (r = rarity(i))
+D_char(absorber) = D[r] * rate(absorber) / B[r]   -- absorber รับเศษปัดของทั้งแบนด์ จึงใช้ rate ของแถวตัวเอง
+-- D_char คือค่าที่พิมพ์ ไม่ใช่ค่าที่ sampler แจกจริง ระยะห่างต่อ pull มีขอบเขต
+-- Df[r] = ส่วนของ D[r] ที่ออกด้วย forced draw (สุ่มตาม share)   แบนด์ที่ไม่มีชั้น pity ยิง Df[r] = 0
+-- ตัวที่ไม่ใช่ absorber   |D_char(i) - ที่แจกจริง| <= D[r] / B[r] * 0.5 * 10^-rho
+-- absorber               |D_char - ที่แจกจริง|    <= Df[r] / B[r] * (N_r - 1) * 0.5 * 10^-rho   (Df[r] = 0 ตรงพอดี)
+-- ผลรวม D_char ในแบนด์   |SUM - D[r]|           <= D[r] / B[r] * (N_r - 1) * 0.5 * 10^-rho
+--                        ส่วนที่ sampler แจกจริงรวมกันได้ D[r] พอดี
 => SUM(D[r]) = 1
 
 -- ============ SHARD / LADDER (derive) ============

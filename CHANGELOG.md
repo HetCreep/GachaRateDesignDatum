@@ -18,6 +18,22 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [1.2.1] - 2026-10-03
+
+### Fixed
+- `D_char` now states how far it can sit from what the sampler deals. The sampler draws a normal pull
+  by `rate(i)` and a forced draw by `share(i)`, so a printed `D[r] * share(i)` is off by the rounding
+  of `rate(i)`, which for the absorber (it takes the whole band's rounding residual) grows with the
+  pool. The absorber's `D_char` now uses its own row's rate, `D[r] * rate(absorber) / B[r]`, and three
+  bounds are written beside the formula: a member that is not the absorber is within
+  `D[r] / B[r] * 0.5 * 10^-rho` a pull, the absorber within `Df[r] / B[r] * (N_r - 1) * 0.5 * 10^-rho`
+  (`Df[r]` is the part of `D[r]` dealt by forced draws, zero in a band no pity level fires, where the
+  absorber's figure is exact), and the printed figures of a band sum to `D[r]` within
+  `D[r] / B[r] * (N_r - 1) * 0.5 * 10^-rho`, while what the sampler deals sums to `D[r]` exactly.
+  Checked exactly on the locked example for every pool size from 1 to 300 a band. Applied identically
+  to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/reference/rules-and-formula.md`. No base rate,
+  delivered band rate or published figure moves.
+
 ## [1.2.0] - 2026-10-03
 
 ### Changed
