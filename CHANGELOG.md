@@ -18,6 +18,19 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [1.2.2] - 2026-10-04
+
+### Fixed
+- The rules block now says which draw is the forced one. It read "forced draw = สุ่ม share(i)
+  ภายในแบนด์ที่ออก" (by share inside the band that came out), which on a pull where a lower pity level
+  fires could also cover a higher rarity that comes out on that pull. It now names the forced draw as
+  the drop of the firing level r* on that pull, drawn by `share(i)` inside band r*; a higher rarity on
+  the same pull is drawn by `rate`, as on a normal pull. This is the reading the delivered-rate chain
+  and the v1.2.1 bound check already used, so no figure and no bound moves. Applied identically to
+  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and `docs/reference/rules-and-formula.md`. A sampler that drew a
+  higher rarity on a fired pull by `share(i)` now draws it by `rate(i)`; its delivered band rates are
+  unchanged.
+
 ## [1.2.1] - 2026-10-03
 
 ### Fixed

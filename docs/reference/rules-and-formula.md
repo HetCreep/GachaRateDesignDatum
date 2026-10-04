@@ -73,7 +73,8 @@ pull ที่ชั้น r* ยิง           rarity ที่ ord > ord[r*]
                             r* ได้ 1 - SUM(B[r'] ที่ ord[r'] > ord[r*])
                             rarity ที่ ord < ord[r*] ได้ 0
                             -- floor pity ไม่แย่งโอกาสของแบนด์ที่สูงกว่า และไม่เปลี่ยน q บน pull ไหนเลย
-forced draw = สุ่ม share(i) ภายในแบนด์ที่ออก    -- ไม่ใช่ order-by-id-limit-1
+forced draw = r* ที่ออกบน pull ที่ชั้น r* ยิง สุ่ม share(i) ภายในแบนด์ r*    -- ไม่ใช่ order-by-id-limit-1
+              -- rarity ที่สูงกว่าบน pull นั้นสุ่มตาม rate เหมือน pull ปกติ
 หลัง drop ของ r'  c[r] = 0 ทุกชั้นที่ ord[r] <= ord[r'], ชั้นอื่น +1
                   -- ได้ top แล้ว counter ทุกชั้นกลับเป็น 0
 
