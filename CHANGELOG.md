@@ -18,6 +18,35 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [1.2.3] - 2026-10-21
+
+Note Genshin's Capturing Radiance (2024) in the formula and exemplar
+
+### Added
+- An exemplar note on Genshin's Capturing Radiance (2024, v5.0), a mechanic that lifts the chance of the
+  promotional character on a 50/50 pull to about 55/45. The figure comes from game-news sources and was
+  not taken from a HoYoverse publication. It sits as an inline note under the Genshin band-rate bullet in §4, and as one
+  comment line beside `share(i)` in §2 saying that a design adding such a loss-to-win conversion
+  computes its delivered rates again, because this rule keeps `u` fixed. It is not a seventh exemplar:
+  the count of six games does not move. No rule and no BASE value moves. Applied identically to
+  `GACHA-RATE-DESIGN-LOCK-PUBLIC.md`, `docs/reference/rules-and-formula.md` and
+  `docs/explanation/exemplar.md`.
+
+### Changed
+- Licence statement: the code that builds and checks the document (`scripts/`, `.githooks/` and
+  `.github/workflows/`) is Apache-2.0, in full in `scripts/LICENSE`. The document stays CC BY-NC-ND 4.0.
+  Stated in `README.md` and `docs/license.md`. No text of the document and no BASE value moves.
+
+### Fixed
+- Two counts in §4 and the short summary now match the six-game anchor and the evidence the document
+  holds. "Four of five major games" missed the display-and-draw row becomes "three of the four games
+  with evidence" (Genshin, Blue Archive and Arknights missed it, FGO got it right, and the document
+  holds no evidence on it for Honkai Star Rail or Fire Emblem Heroes). "Five games, five studios" becomes
+  "five games, four companies", because Genshin and Honkai Star Rail are both HoYoverse. "5 major games"
+  that never moved a band rate becomes "5 of the 6 exemplar games". No rule and no BASE value moves.
+  Applied identically to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md`, `docs/explanation/exemplar.md` and
+  `docs/README.md`.
+
 ## [1.2.2] - 2026-10-04
 
 ### Fixed

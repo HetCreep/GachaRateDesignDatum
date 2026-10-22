@@ -48,6 +48,7 @@ W_r     = SUM(w[i] for i in pool_r)
 share(i) = u * (featured(i) ? 1/F_r : 0) + (1 - u) * w[i] / W_r
            -- featured อยู่ในเศษที่เหลือด้วย ไม่ได้ถูกกันออก
            -- นิยามถูกต้องที่ N = 1, 2, 7, 50 โดยไม่มี special case
+           -- เกมจริงอาจยกส่วนแบ่งของตัว featured เหนือสัดส่วนที่พิมพ์ได้ด้วยการแปลงแพ้เป็นชนะ เช่น Capturing Radiance ของ Genshin (2024) กฎนี้ตรึง u ไว้ ดีไซน์ที่เพิ่มกลไกแบบนี้ต้องคำนวณ delivered rate ใหม่
 
 ideal(i) = B[rarity(i)] * share(i)
 

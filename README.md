@@ -37,5 +37,8 @@ accepted.
 [`LICENSE`](LICENSE). You may share it with credit; you may not use it commercially or distribute an
 adapted version without written permission from the owner.
 
+The code that builds and checks the document (`scripts/`, `.githooks/` and `.github/workflows/`) is
+Apache-2.0, in full in [`scripts/LICENSE`](scripts/LICENSE).
+
 > ⚠️ Not legal or financial advice. The rates, pity and prices of the games it cites are public facts
 > from the sources named in the document, and you can check them yourself.
