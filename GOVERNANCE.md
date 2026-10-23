@@ -20,6 +20,19 @@ The rules for changing a value in the document itself (who ratifies a BASE value
 review, how a source-backed value is revalidated) are in the published page `docs/governance.md`.
 This file does not restate them.
 
+## How a version is sized
+
+Versions follow [Semantic Versioning](https://semver.org/). The size of an entry is decided by what
+it does to a design that already conforms:
+
+- **PATCH:** wording, citations, an exemplar note, or a correction that moves no BASE value and no
+  invariant and adds nothing normative (v1.1.3, v1.1.4, v1.2.1 and v1.2.2 were sized so).
+- **MINOR:** a new normative rule or invariant, or a new option. Nothing an existing design already
+  does becomes wrong, though a new rule can need new work before the design conforms again (v1.1.0
+  added I19; v1.2.0, multi-level pity).
+- **MAJOR:** a locked rule changes meaning or a BASE value moves. Something a conforming design
+  already does may become wrong.
+
 ## Who writes the changes
 
 The owner decides what is published. AI assistants help write the changes, working in the owner's
