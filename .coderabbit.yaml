@@ -21,6 +21,10 @@
 #      carries our conclusion about a finding. A learning that would lower the number of findings is rejected at
 #      the approval step. A detector taught to agree with its subject is no longer a detector.
 #
+# THIS FILE NOW ALSO CARRIES WHAT THE REPOSITORY UI PAGE HELD (the head's order, 2026-10-26): the review language, the auto-review
+# settings, the path filters, the repository's own path instructions and its switch-offs. One home: whether a repository file
+# merges the UI layer is undocumented, so a setting kept in two places could silently read as only one of them.
+#
 # PRECEDENCE, from the vendor (docs.coderabbit.ai/guides/configuration-overview, "Understanding
 # configuration priority"): "Configuration sources don't merge by default." The repository
 # .coderabbit.yaml (priority 2) outranks Repository settings (4) and Organization settings (5), but NOT
@@ -32,6 +36,17 @@
 # below this file would REPLACE the organization's other settings with schema defaults instead of adding
 # to them. Read the merged result on any pull request with the comment: @coderabbitai configuration
 inheritance: true
+# The document is written in Thai, so reviews are too.
+language: th-TH
+# A published document is reviewed on the vendor's released features only.
+early_access: false
+chat:
+  # Chat, and so learning creation, is limited to organization members. The UI page held it; the zone's Global overrides do not, and this file is its one home.
+  allow_non_org_members: false
+issue_enrichment:
+  auto_enrich:
+    # Issues here are reports to the owner, not tasks to enrich.
+    enabled: false
 knowledge_base:
   learnings:
     scope: local
@@ -44,6 +59,42 @@ knowledge_base:
     enabled: false
 reviews:
   profile: assertive
+  # Findings are read by people and pressed through Fix comments; the extra AI-agent prompt block in each comment adds nothing here.
+  enable_prompt_for_ai_agents: false
+  # Slop detection posts an automatic public label on an outsider's pull request; the conduct rule answers an outsider through a person first (CoalBoard D4, kept off when the owner asked).
+  slop_detection:
+    enabled: false
+  auto_approvals:
+    # A person merges every pull request in this repository.
+    enabled: false
+  finishing_touches:
+    simplify:
+      # Nothing here is code to simplify; the document's wording is the owner's.
+      enabled: false
+  # Considered and not written: reviews.pre_merge_checks.override_requested_reviewers_only (every pre-merge check is off at the zone,
+  # so there is nothing to override) and knowledge_base.automatic_linking_mode (the knowledge base is off at the zone, opt_out: true,
+  # the owner's switch, which a repository file never flips).
+  auto_review:
+    # coderabbit/base is the base branch of the house's full-repository review vehicle; 0 means a review is never paused by the count of reviewed commits.
+    base_branches:
+      - coderabbit/base
+    auto_pause_after_reviewed_commits: 0
+    # Pull requests opened by these two bots are not reviewed.
+    ignore_usernames:
+      - dependabot[bot]
+      - github-actions[bot]
+  # A filter stays only for a licence, a generated file or a binary. A filter on a hand-written file would hide it from the
+  # reviewer, which is a suppression, so none exists beyond these.
+  path_filters:
+    - "!LICENSE"
+    # The code part's licence (Apache-2.0 for scripts/, .githooks/ and .github/workflows/).
+    - "!scripts/LICENSE"
+    # The licence's reading copy.
+    - "!docs/license.md"
+    # docs/SUMMARY.md's form is written by GitBook's Git Sync (the zone's two-faces rule 3).
+    - "!docs/SUMMARY.md"
+    # SVG and image files.
+    - "!assets/**"
   path_instructions:
     # Restates DOC-PATTERN.md: "Data is verbatim from its source, never invented" and "a behaviour claim = the code".
     - path: "{README,SECURITY,CONTRIBUTING}.md"
@@ -60,3 +111,24 @@ reviews:
     - path: "scripts/{lib/secret-scan.mjs,secret-scan.test.mjs,secret-gate.mjs,secret-gate.test.mjs}"
       instructions: |
         These files are byte-equal copies of the organization's scanner canon, held equal to their source by a parity check; a local edit breaks the parity on purpose. Review them on their merits exactly as any other file and report every finding at its severity. Add to each finding that the fix is made at the canon's source and arrives here by blob id at the next sync, so the author routes it there instead of editing this copy. Never lower a severity, drop a finding or accept a local patch because the file is a copy.
+    # Ported from the Repository UI page, rewritten as facts and contracts (the teaching law in the header). Where a path below equals a canon path above, both apply.
+    - path: "GACHA-RATE-DESIGN-LOCK-PUBLIC.md"
+      instructions: |
+        The single-file source of a published reference, written in Thai. A number, a rate, a price or a formula moves only by the owner's choice, never by a plausible-looking correction. Report a value that disagrees with another file or with its own stated source.
+    - path: "docs/**"
+      instructions: |
+        The GitBook reading copy, split from GACHA-RATE-DESIGN-LOCK-PUBLIC.md into Reference, Explanation, Guides and Governance pages. Report a number, rule or formula that differs from the single-file source, and a broken link between pages.
+    - path: "**/*.md"
+      instructions: |
+        Thai prose follows the house typography: a sentence ends with a space, never a full stop, and Thai text uses no semicolon. Text keeps whatever Unicode normalization it already carries; NFKC and NFKD discard distinctions the text depends on (UAX 15 section 1.2).
+    - path: "CHANGELOG.md"
+      instructions: |
+        A released entry is immutable; a correction gets a new entry.
+    # The canon workflows block above matches the same files: both apply.
+    - path: ".github/workflows/*.yml"
+      instructions: |
+        Report a step that can fail silently, an action not pinned to a full commit SHA, or a job without a timeout.
+    # CONTRIBUTING.md is also matched by the canon block above: both apply.
+    - path: "{CONTRIBUTING,GOVERNANCE}.md"
+      instructions: |
+        Process text owned by the repository's owner. Report an instruction that contradicts what the workflows actually do.
