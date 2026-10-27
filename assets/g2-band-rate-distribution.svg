@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" width="700" height="440" role="img" aria-labelledby="g2-title g2-desc">
+  <title id="g2-title">Worked example: four rarity bands summing to exactly 100 percent</title>
+  <desc id="g2-desc">A donut chart with four segments: legendary 3.3000 percent, epic 8.8666 percent, rare 23.8234 percent, common 64.0100 percent. The four values sum to exactly 100.0000 percent. Segment size is proportional to the stated percentage; a legend lists the exact value for each band.</desc>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1a1a1a; }
+    .legend-name { font-size: 16px; font-weight: 700; }
+    .legend-value { font-size: 16px; }
+    .total-label { font-size: 15px; font-weight: 700; }
+    .caption { font-size: 13px; }
+  </style>
+
+  <rect x="0" y="0" width="700" height="440" fill="#ffffff"/>
+
+  <!-- Donut, center (250,205), outer R=170, inner r=95. Every point below computed directly
+       via cx+R*sin(theta), cy-R*cos(theta) at this file's own R/r/center—not rescaled from
+       another radius, to keep the arcs meeting exactly at their shared boundary points. -->
+  <!-- legendary: 3.3000% = 11.88deg, 0 -> 11.88 -->
+  <path d="M 250.000 35.000
+           A 170 170 0 0 1 284.997 38.641
+           L 269.557 112.035
+           A 95 95 0 0 0 250.000 110.000
+           Z" fill="#1a1a1a"/>
+
+  <!-- epic: 8.8666% = 31.9198deg, 11.88 -> 43.7998 -->
+  <path d="M 284.997 38.641
+           A 170 170 0 0 1 367.665 82.299
+           L 315.754 136.432
+           A 95 95 0 0 0 269.557 112.035
+           Z" fill="#2b5f8a"/>
+
+  <!-- rare: 23.8234% = 85.7642deg, 43.7998 -> 129.564 -->
+  <path d="M 367.665 82.299
+           A 170 170 0 0 1 381.059 313.283
+           L 323.239 265.501
+           A 95 95 0 0 0 315.754 136.432
+           Z" fill="#6b93b0"/>
+
+  <!-- common: 64.0100% = 230.436deg, 129.564 -> 360(=0) -->
+  <path d="M 381.059 313.283
+           A 170 170 0 1 1 250.000 35.000
+           L 250.000 110.000
+           A 95 95 0 1 0 323.239 265.501
+           Z" fill="#c9d6de"/>
+
+  <text x="250" y="200" class="total-label" text-anchor="middle">100.0000%</text>
+  <text x="250" y="220" class="caption" text-anchor="middle">total</text>
+
+  <!-- Legend -->
+  <rect x="450" y="60" width="22" height="22" fill="#1a1a1a"/>
+  <text x="482" y="77" class="legend-name">legendary</text>
+  <text x="620" y="77" class="legend-value" text-anchor="end">3.3000%</text>
+
+  <rect x="450" y="100" width="22" height="22" fill="#2b5f8a"/>
+  <text x="482" y="117" class="legend-name">epic</text>
+  <text x="620" y="117" class="legend-value" text-anchor="end">8.8666%</text>
+
+  <rect x="450" y="140" width="22" height="22" fill="#6b93b0"/>
+  <text x="482" y="157" class="legend-name">rare</text>
+  <text x="620" y="157" class="legend-value" text-anchor="end">23.8234%</text>
+
+  <rect x="450" y="180" width="22" height="22" fill="#c9d6de" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="482" y="197" class="legend-name">common</text>
+  <text x="620" y="197" class="legend-value" text-anchor="end">64.0100%</text>
+
+  <line x1="450" y1="225" x2="620" y2="225" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="620" y="245" class="total-label" text-anchor="end">= 100.0000%</text>
+
+  <text x="350" y="390" class="caption" text-anchor="middle">
+    Source: GACHA-RATE-DESIGN-LOCK-PUBLIC.md, worked example block. Values verbatim, not re-derived.
+  </text>
+
+  <text x="350" y="410" class="caption" text-anchor="middle">
+    &#169; 2026 HetCreep &#8212; CC BY-NC-ND 4.0 (attribution, non-commercial, no derivatives)
+  </text>
+</svg>
