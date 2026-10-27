@@ -18,6 +18,22 @@ under Keep a Changelog's type headings — nothing was reworded. The one deliber
 those two items (present on `docs/README.md` only), and merging them into one file without marking
 which surface an entry applies to would state something false of the other surface.
 
+## [2.0.0] - 2026-10-27
+
+Check invariant I5c against the printed delivered value D_char
+
+### Changed
+- Invariant I5c now checks the printed per-character percentage against `round(100*D_char(i), rho)`
+  where it checked `round(100*rate(i), rho)`. `D_char` is the delivered value printed per character,
+  which is what invariant I5b already asks the screen to show and what the formula section names as
+  the printed value, so the three now agree. A check against the base `rate(i)` could pass while the
+  screen showed a figure the player does not receive. A design that printed the base `rate(i)`
+  per character conformed before and does not now, which is why this is MAJOR (`GOVERNANCE.md`, How a
+  version is sized). The failure-mode cell beside it is unchanged: a per-character
+  check on `D_char` still catches a featured figure left stale or diluted when the pool grows. No BASE
+  value moves. Applied identically to `GACHA-RATE-DESIGN-LOCK-PUBLIC.md` and
+  `docs/reference/rules-and-formula.md`; the version spots move with it in `docs/README.md`.
+
 ## [1.2.3] - 2026-10-21
 
 Note Genshin's Capturing Radiance (2024) in the formula and exemplar

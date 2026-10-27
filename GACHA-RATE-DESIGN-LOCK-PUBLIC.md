@@ -13,7 +13,7 @@
 
 # วิธีตั้งเรต gacha โดยไม่ต้อง "เดาเลข"
 
-`v1.2.3` · แก้ไขล่าสุด 2026-10-21 (ดู [changelog](#changelog) ท้ายเอกสาร)
+`v2.0.0` · แก้ไขล่าสุด 2026-10-27 (ดู [changelog](#changelog) ท้ายเอกสาร)
 
 **เอกสารนี้ตอบคำถามเดียว: เรต pity ราคา ควรเป็นเท่าไหร่ และคุณรู้ได้ยังไงว่าไม่ได้มั่ว**
 
@@ -164,7 +164,7 @@ pulls_to_terminal(i) = SUM(L[rarity(i)][k]) / (S[rarity(i)] * D_char(i))
 | **I3b**  | `B[r] = 0 => N_r = 0`                                                  | ตัวละครที่เรต 0% โผล่ใน list แต่สุ่มไม่ได้                                       |
 | **I4**   | `0 < B[top] < 1` และ top คือ rarity ที่ ord สูงสุดที่ B > 0 | pool ที่ทุกตัวอยู่ในแบนด์ top → counter ค้างที่ 0 ตลอดกาล และถ้า rarity ที่สูงกว่า top ไม่มี pity → E[cycle] กับ D[top] นับ drop ของ rarity นั้นเป็นของ top |
 | **I5b**  | `SUM(D[r]) == 1` และหน้าจอต้องแสดง delivered ไม่ใช่แค่ base            | `P=1` ส่งแบนด์บน 100% ขณะประกาศ 5%                                              |
-| **I5c**  | % ต่อตัวที่แสดง == `round(100*rate(i), rho)` ทุกตัว                    | เรต featured ไม่มี assertion → pool โต 20 เท่าโดยเงียบสนิท                       |
+| **I5c**  | % ต่อตัวที่แสดง == `round(100*D_char(i), rho)` ทุกตัว                  | เรต featured ไม่มี assertion → pool โต 20 เท่าโดยเงียบสนิท                       |
 | **I6**   | `publishable(banner) <=> invariant ทุกข้อผ่าน AND ทุกตัวผ่าน asset gate` | banner ที่ disclosure ผิดยัง publish ได้                                        |
 | **I7**   | `w[i] >= 1` (integer)                                                  | `w = 0` → division by zero ทุก pull ทุกผู้เล่น; `w < 0` → เรตติดลบ               |
 | **I8**   | แถวที่ผู้เล่น (role `anon`) เห็น == แถวที่ sampler อ่าน                | test รันเป็น superuser → พิสูจน์ odds ของ row set ที่ผู้เล่นอ่านไม่ได้           |
