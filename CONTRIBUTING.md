@@ -39,6 +39,6 @@ states:
 
 ## A licence request
 
-You may share the document with credit. Commercial use or adaptation needs written permission from
-the owner (`docs/license.md`). For that, open an issue or approach the owner through
+You may share the document with credit. Commercial use, or distributing an adapted version, needs written
+permission from the owner (`docs/license.md`). For that, open an issue or approach the owner through
 **github.com/HetCreep**.
